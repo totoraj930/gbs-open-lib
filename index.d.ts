@@ -45,9 +45,6 @@ declare const zRaidTweetMini: z.ZodObject<{
 }>;
 type RaidTweetMini = z.infer<typeof zRaidTweetMini>;
 
-declare let gbsList: GbsList;
-declare function initGbsList(url: string): Promise<void>;
-declare function getEnemyId(name: string, level: string): number;
 declare const EnemyElement: {
     readonly None: 0;
     readonly Fire: 1;
@@ -128,4 +125,4 @@ type GbsList = z.infer<typeof zGbsList>;
 
 declare const _default: {};
 
-export { EnemyElement, GbsList, GbsListItem, RaidTweetMini, _default as default, gbsList, getEnemyId, initGbsList, zGbsList, zGbsListItem, zRaidTweetMini };
+export { EnemyElement, GbsList, GbsListItem, RaidTweetMini, _default as default, zGbsList, zGbsListItem, zRaidTweetMini };
