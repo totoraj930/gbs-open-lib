@@ -12,6 +12,7 @@ type RawRaidTweet = {
     level: string;
     language: 'ja' | 'en';
     time: number;
+    elapsed_time: number;
 };
 
 /**
@@ -27,6 +28,7 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     lv: z.ZodString;
     l: z.ZodEnum<["en", "ja"]>;
     t: z.ZodNumber;
+    et: z.ZodNumber;
     c: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     en: string;
@@ -38,6 +40,7 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     lv: string;
     l: "ja" | "en";
     t: number;
+    et: number;
     c?: string | undefined;
 }, {
     en: string;
@@ -49,6 +52,7 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     lv: string;
     l: "ja" | "en";
     t: number;
+    et: number;
     c?: string | undefined;
 }>;
 /**
@@ -62,6 +66,7 @@ declare const zRawRaidTweetMini: z.ZodObject<{
  * lv: level\
  * l: language\
  * t: time\
+ * et: elapsed_time\
  * c: comment
  */
 type RawRaidTweetMini = z.infer<typeof zRawRaidTweetMini>;
@@ -81,6 +86,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     en: z.ZodOptional<z.ZodString>;
     l: z.ZodEnum<["en", "ja"]>;
     t: z.ZodNumber;
+    et: z.ZodNumber;
     ft: z.ZodNumber;
     c: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -91,6 +97,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     bi: string;
     l: "ja" | "en";
     t: number;
+    et: number;
     ei: number;
     ft: number;
     lv?: string | undefined;
@@ -104,6 +111,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     bi: string;
     l: "ja" | "en";
     t: number;
+    et: number;
     ei: number;
     ft: number;
     lv?: string | undefined;

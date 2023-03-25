@@ -14,6 +14,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     en: z.ZodOptional<z.ZodString>;
     l: z.ZodEnum<["en", "ja"]>;
     t: z.ZodNumber;
+    et: z.ZodNumber;
     ft: z.ZodNumber;
     c: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -24,6 +25,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     bi: string;
     l: "en" | "ja";
     t: number;
+    et: number;
     ei: number;
     ft: number;
     lv?: string | undefined;
@@ -37,6 +39,7 @@ declare const zRaidTweetMini: z.ZodObject<{
     bi: string;
     l: "en" | "ja";
     t: number;
+    et: number;
     ei: number;
     ft: number;
     lv?: string | undefined;
