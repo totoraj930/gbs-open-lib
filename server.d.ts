@@ -4,8 +4,8 @@ import { z } from 'zod';
 type RawRaidTweet = {
     name: string;
     screen_name: string;
-    user_id: number;
-    tweet_id: number;
+    user_id: string;
+    tweet_id: string;
     battle_id: string;
     comment?: string;
     enemy_name: string;
@@ -21,8 +21,8 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     n: z.ZodString;
     sn: z.ZodString;
     en: z.ZodString;
-    ui: z.ZodNumber;
-    ti: z.ZodNumber;
+    ui: z.ZodString;
+    ti: z.ZodString;
     bi: z.ZodString;
     lv: z.ZodString;
     l: z.ZodEnum<["en", "ja"]>;
@@ -32,8 +32,8 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     en: string;
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     lv: string;
     l: "ja" | "en";
@@ -43,14 +43,27 @@ declare const zRawRaidTweetMini: z.ZodObject<{
     en: string;
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     lv: string;
     l: "ja" | "en";
     t: number;
     c?: string | undefined;
 }>;
+/**
+ * 対応\
+ * n: name\
+ * sn: scree_name\
+ * en: enemy_name\
+ * ui: user_id\
+ * ti: tweet_id\
+ * bi: battle_id\
+ * lv: level\
+ * l: language\
+ * t: time\
+ * c: comment
+ */
 type RawRaidTweetMini = z.infer<typeof zRawRaidTweetMini>;
 declare function minifyRawRaidTweet(tweet: RawRaidTweet): RawRaidTweetMini;
 declare function unpackRawRaidTweetMini(mini: RawRaidTweetMini): RawRaidTweet;
@@ -60,8 +73,8 @@ declare function unpackRawRaidTweetMini(mini: RawRaidTweetMini): RawRaidTweet;
 declare const zRaidTweetMini: z.ZodObject<{
     n: z.ZodString;
     sn: z.ZodString;
-    ui: z.ZodNumber;
-    ti: z.ZodNumber;
+    ui: z.ZodString;
+    ti: z.ZodString;
     bi: z.ZodString;
     ei: z.ZodNumber;
     lv: z.ZodOptional<z.ZodString>;
@@ -73,8 +86,8 @@ declare const zRaidTweetMini: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     l: "ja" | "en";
     t: number;
@@ -86,8 +99,8 @@ declare const zRaidTweetMini: z.ZodObject<{
 }, {
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     l: "ja" | "en";
     t: number;
@@ -97,6 +110,22 @@ declare const zRaidTweetMini: z.ZodObject<{
     en?: string | undefined;
     c?: string | undefined;
 }>;
+/**
+ * 対応\
+ * n: name\
+ * sn: scree_name\
+ * ui: user_id\
+ * ti: tweet_id\
+ * bi: battle_id\
+ * ei: enemy_id(-1はリスト外)\
+ * l: language\
+ * t: time\
+ * ft: first_time(初回投稿時間\
+ * c: comment\
+ * リスト外のみ追加\
+ * en?: enemy_name\
+ * lv?: level
+ */
 type RaidTweetMini = z.infer<typeof zRaidTweetMini>;
 
 declare const redisOps: {

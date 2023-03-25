@@ -6,8 +6,8 @@ import { z } from 'zod';
 declare const zRaidTweetMini: z.ZodObject<{
     n: z.ZodString;
     sn: z.ZodString;
-    ui: z.ZodNumber;
-    ti: z.ZodNumber;
+    ui: z.ZodString;
+    ti: z.ZodString;
     bi: z.ZodString;
     ei: z.ZodNumber;
     lv: z.ZodOptional<z.ZodString>;
@@ -19,8 +19,8 @@ declare const zRaidTweetMini: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     l: "en" | "ja";
     t: number;
@@ -32,8 +32,8 @@ declare const zRaidTweetMini: z.ZodObject<{
 }, {
     n: string;
     sn: string;
-    ui: number;
-    ti: number;
+    ui: string;
+    ti: string;
     bi: string;
     l: "en" | "ja";
     t: number;
@@ -43,6 +43,22 @@ declare const zRaidTweetMini: z.ZodObject<{
     en?: string | undefined;
     c?: string | undefined;
 }>;
+/**
+ * 対応\
+ * n: name\
+ * sn: scree_name\
+ * ui: user_id\
+ * ti: tweet_id\
+ * bi: battle_id\
+ * ei: enemy_id(-1はリスト外)\
+ * l: language\
+ * t: time\
+ * ft: first_time(初回投稿時間\
+ * c: comment\
+ * リスト外のみ追加\
+ * en?: enemy_name\
+ * lv?: level
+ */
 type RaidTweetMini = z.infer<typeof zRaidTweetMini>;
 
 declare const EnemyElement: {
@@ -122,7 +138,16 @@ declare const zGbsList: z.ZodArray<z.ZodObject<{
     tags: string[];
 }>, "many">;
 type GbsList = z.infer<typeof zGbsList>;
+declare function getEnemyData(enemyId: number, list: GbsList): {
+    en: string;
+    ja: string;
+    id: number;
+    attr: 0 | 2 | 1 | 3 | 4 | 5 | 6;
+    image: string | null;
+    level: string;
+    tags: string[];
+} | null;
 
 declare const _default: {};
 
-export { EnemyElement, GbsList, GbsListItem, RaidTweetMini, _default as default, zGbsList, zGbsListItem, zRaidTweetMini };
+export { EnemyElement, GbsList, GbsListItem, RaidTweetMini, _default as default, getEnemyData, zGbsList, zGbsListItem, zRaidTweetMini };
