@@ -1,6 +1,6 @@
 {
     "name": "gbs-open-lib",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "gbs-openのAPIを使用するためのユーティリティ",
     "homepage": "https://github.com/totoraj930/gbs-open-lib",
     "bugs": {
