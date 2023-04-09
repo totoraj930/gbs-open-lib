@@ -143,6 +143,7 @@ declare const redisOps: {
 };
 type RawChEvents = {
     tweet: RawRaidTweetMini;
+    updateGbsList: void;
 };
 /**
  * 生のツイート受信機
@@ -150,6 +151,7 @@ type RawChEvents = {
 declare function getRawChClient(chName?: string): mitt.Emitter<RawChEvents>;
 type RaidTweetChEvents = {
     tweet: RaidTweetMini;
+    updateGbsList: void;
 };
 /**
  * 完成済みのツイート受信機
