@@ -1,4 +1,5 @@
 import * as mitt from 'mitt';
+import * as zod from 'zod';
 import { z } from 'zod';
 
 type RawRaidTweet = {
@@ -147,68 +148,72 @@ type RawChEvents = {
 /**
  * 生のツイート受信機
  */
-declare function getRawChClient(): mitt.Emitter<RawChEvents>;
+declare function getRawChClient(chName?: string): mitt.Emitter<RawChEvents>;
 type RaidTweetChEvents = {
     tweet: RaidTweetMini;
 };
 /**
  * 完成済みのツイート受信機
  */
-declare function getRaidTweetChClient(): mitt.Emitter<RaidTweetChEvents>;
+declare function getRaidTweetChClient(chName?: string): mitt.Emitter<RaidTweetChEvents>;
 /**
  * 生のツイートデータを送信
  */
-declare function sendRawRaidTweet(tweet: RawRaidTweet): void;
+declare function sendRawRaidTweet(tweet: RawRaidTweet, chName?: string): void;
 /**
  * 加工済みのツイートデータを送信
  */
-declare function sendRaidTweet(tweet: RaidTweetMini): void;
+declare function sendRaidTweet(tweet: RaidTweetMini, chName?: string): void;
 
-declare const zConfig: z.ZodObject<{
-    OAUTH_CALLBACK: z.ZodString;
-    CONSUMER_KEY: z.ZodString;
-    CONSUMER_SECRET: z.ZodString;
-    PORT: z.ZodString;
-    CACHE_PORT: z.ZodString;
-    STREAM_PORT: z.ZodString;
-    GBS_LIST: z.ZodString;
-    REDIS_HOST: z.ZodString;
-    REDIS_PORT: z.ZodString;
-    REDIS_PASS: z.ZodString;
-}, "strip", z.ZodTypeAny, {
+declare const zAllConfig: zod.ZodObject<{
+    BEARER: zod.ZodString;
+    OAUTH_CALLBACK: zod.ZodString;
+    CONSUMER_KEY: zod.ZodString;
+    CONSUMER_SECRET: zod.ZodString;
+    REDIS_HOST: zod.ZodString;
+    REDIS_PORT: zod.ZodString;
+    REDIS_PASS: zod.ZodString;
+    CACHE_PORT: zod.ZodString;
+    GBS_LIST: zod.ZodString;
+    PORT: zod.ZodString;
+    STREAM_PORT: zod.ZodString;
+}, "strip", zod.ZodTypeAny, {
+    STREAM_PORT: string;
+    BEARER: string;
     OAUTH_CALLBACK: string;
     CONSUMER_KEY: string;
     CONSUMER_SECRET: string;
-    PORT: string;
-    CACHE_PORT: string;
-    STREAM_PORT: string;
-    GBS_LIST: string;
     REDIS_HOST: string;
     REDIS_PORT: string;
     REDIS_PASS: string;
+    CACHE_PORT: string;
+    GBS_LIST: string;
+    PORT: string;
 }, {
+    STREAM_PORT: string;
+    BEARER: string;
     OAUTH_CALLBACK: string;
     CONSUMER_KEY: string;
     CONSUMER_SECRET: string;
-    PORT: string;
-    CACHE_PORT: string;
-    STREAM_PORT: string;
-    GBS_LIST: string;
     REDIS_HOST: string;
     REDIS_PORT: string;
     REDIS_PASS: string;
+    CACHE_PORT: string;
+    GBS_LIST: string;
+    PORT: string;
 }>;
-declare const env: {
+declare const allEnv: {
+    STREAM_PORT: string;
+    BEARER: string;
     OAUTH_CALLBACK: string;
     CONSUMER_KEY: string;
     CONSUMER_SECRET: string;
-    PORT: string;
-    CACHE_PORT: string;
-    STREAM_PORT: string;
-    GBS_LIST: string;
     REDIS_HOST: string;
     REDIS_PORT: string;
     REDIS_PASS: string;
+    CACHE_PORT: string;
+    GBS_LIST: string;
+    PORT: string;
 };
 
-export { RaidTweetMini, RawRaidTweet, RawRaidTweetMini, env, getRaidTweetChClient, getRawChClient, minifyRawRaidTweet, redisOps, sendRaidTweet, sendRawRaidTweet, unpackRawRaidTweetMini, zConfig, zRaidTweetMini, zRawRaidTweetMini };
+export { RaidTweetMini, RawRaidTweet, RawRaidTweetMini, allEnv, getRaidTweetChClient, getRawChClient, minifyRawRaidTweet, redisOps, sendRaidTweet, sendRawRaidTweet, unpackRawRaidTweetMini, zAllConfig, zRaidTweetMini, zRawRaidTweetMini };
