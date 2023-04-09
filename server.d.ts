@@ -1,5 +1,4 @@
 import * as mitt from 'mitt';
-import * as zod from 'zod';
 import { z } from 'zod';
 
 type RawRaidTweet = {
@@ -165,55 +164,4 @@ declare function sendRawRaidTweet(tweet: RawRaidTweet, chName?: string): void;
  */
 declare function sendRaidTweet(tweet: RaidTweetMini, chName?: string): void;
 
-declare const zAllConfig: zod.ZodObject<{
-    BEARER: zod.ZodString;
-    OAUTH_CALLBACK: zod.ZodString;
-    CONSUMER_KEY: zod.ZodString;
-    CONSUMER_SECRET: zod.ZodString;
-    REDIS_HOST: zod.ZodString;
-    REDIS_PORT: zod.ZodString;
-    REDIS_PASS: zod.ZodString;
-    CACHE_PORT: zod.ZodString;
-    GBS_LIST: zod.ZodString;
-    PORT: zod.ZodString;
-    STREAM_PORT: zod.ZodString;
-}, "strip", zod.ZodTypeAny, {
-    STREAM_PORT: string;
-    BEARER: string;
-    OAUTH_CALLBACK: string;
-    CONSUMER_KEY: string;
-    CONSUMER_SECRET: string;
-    REDIS_HOST: string;
-    REDIS_PORT: string;
-    REDIS_PASS: string;
-    CACHE_PORT: string;
-    GBS_LIST: string;
-    PORT: string;
-}, {
-    STREAM_PORT: string;
-    BEARER: string;
-    OAUTH_CALLBACK: string;
-    CONSUMER_KEY: string;
-    CONSUMER_SECRET: string;
-    REDIS_HOST: string;
-    REDIS_PORT: string;
-    REDIS_PASS: string;
-    CACHE_PORT: string;
-    GBS_LIST: string;
-    PORT: string;
-}>;
-declare const allEnv: {
-    STREAM_PORT: string;
-    BEARER: string;
-    OAUTH_CALLBACK: string;
-    CONSUMER_KEY: string;
-    CONSUMER_SECRET: string;
-    REDIS_HOST: string;
-    REDIS_PORT: string;
-    REDIS_PASS: string;
-    CACHE_PORT: string;
-    GBS_LIST: string;
-    PORT: string;
-};
-
-export { RaidTweetMini, RawRaidTweet, RawRaidTweetMini, allEnv, getRaidTweetChClient, getRawChClient, minifyRawRaidTweet, redisOps, sendRaidTweet, sendRawRaidTweet, unpackRawRaidTweetMini, zAllConfig, zRaidTweetMini, zRawRaidTweetMini };
+export { RaidTweetMini, RawRaidTweet, RawRaidTweetMini, getRaidTweetChClient, getRawChClient, minifyRawRaidTweet, redisOps, sendRaidTweet, sendRawRaidTweet, unpackRawRaidTweetMini, zRaidTweetMini, zRawRaidTweetMini };
